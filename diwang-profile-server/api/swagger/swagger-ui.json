@@ -47,7 +47,40 @@
             "description": "successful operation"
           },
           "500": {
-            "description": "Please login to swaggerUI to get token"
+            "description": "please login to swaggerUI to get token"
+          }
+        }
+      }
+    },
+
+    "/create-token": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Creates a jwt token for login authentication ",
+        "description": "Sends username and password to generate new jwt token",
+        "operationId": "create-token",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "add username and password to create a token",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/create-token"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "500": {
+            "description": "fail to generate token"
           }
         }
       }
@@ -114,7 +147,107 @@
           }
         }
       }
+    },
+
+    "/getId/{testId}": {
+      "get": {
+        "tags": [
+          "store"
+        ],
+        "summary": "Place an order for a pet",
+        "description": "",
+        "operationId": "getTestId",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "testId",
+            "in": "path",
+            "description": "ID of test post",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "500": {
+            "description": "Invalid operation"
+          }
+        }
+      }
+    },
+
+    "/updateId/{testId}": {
+      "patch": {
+        "tags": [
+          "store"
+        ],
+        "summary": "Place an order for a pet",
+        "description": "",
+        "operationId": "patchTestId",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "testId",
+            "in": "path",
+            "description": "ID of test post",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "order placed for purchasing the pet",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Testpost"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "500": {
+            "description": "Invalid operation"
+          }
+        }
+      }
+    },
+
+    "/deleteId/{testId}": {
+      "delete": {
+        "tags": [
+          "store"
+        ],
+        "summary": "Place an order for a pet",
+        "description": "",
+        "operationId": "deleteTestId",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "testId",
+            "in": "path",
+            "description": "ID of test post",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "500": {
+            "description": "Invalid operation"
+          }
+        }
+      }
     }
+
   },
   "securityDefinitions": {
     "bearer-auth": {
@@ -127,15 +260,29 @@
     "Testpost": {
       "type": "object",
       "properties": {
-        "id": {
+        "name": {
           "type": "string"
         },
-        "name": {
+        "password": {
           "type": "string"
         }
       },
       "xml": {
         "name": "Order"
+      }
+    },
+    "create-token": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "Authentication"
       }
     }
   },
