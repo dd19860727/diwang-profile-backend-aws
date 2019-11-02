@@ -3,7 +3,10 @@ const expressLayouts = require('express-ejs-layouts');
 const path = require('path');
 const dotenv = require('dotenv');
 const app = express();
+
 const mongoose = require('mongoose');
+const errorController = require("./api/controller/errors/errorController")
+
 const logger = require('morgan');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
@@ -30,7 +33,7 @@ const {
 
 
 //Connect to mongoDB
-mongoose.connect(process.env.MONGO_DB_URL, {useNewUrlParser: true});
+mongoose.connect(process.env.MONGO_DB_URL, {useNewUrlParser: true}, errorController.db_connection_error_handler);
 
 //cross-domain
 app.use(cors(loadCorsConfig));

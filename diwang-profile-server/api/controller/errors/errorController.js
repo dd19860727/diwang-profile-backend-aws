@@ -37,3 +37,11 @@ exports.error_handler = (error, req, res, next) => {
 exports.db_error_handler = (res, err) =>{
   res.status(500).json({error:err});
 }
+
+exports.db_connection_error_handler = (error) =>{
+  if(error) {
+      throw error;
+  }else{
+      console.log("Connected to database `" + process.env.DATABASE_NAME + "`!");
+  }
+}
