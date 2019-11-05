@@ -61,7 +61,7 @@ app.use(addResHeader);
 
 // Routers which should handle requests
 //app.use('/', redirectToSwagger);
-app.use('/', redirectToLogin);
+app.use(root, redirectToLogin);
 app.use(root, loginRouter);
 app.use(root, swaggerRouter);
 app.use(root, apiRouter);

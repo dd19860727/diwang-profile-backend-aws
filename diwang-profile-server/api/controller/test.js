@@ -1,6 +1,5 @@
 const Test = require("../models/test");
 const mongoose = require('mongoose');
-const jwt = require("jsonwebtoken");
 const authController = require('./auth/authController');
 const errorController = require('./errors/errorController');
 const dbController = require('./db/dbController');
